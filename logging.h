@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #define CLIN_LOG(_STR, ...) \
-fprintf(clin_g_log_file, "%10.3f | " _STR "\n", clin_get_timestamp(), __VA_ARGS__);
+fprintf(clin_g_log_file, "%10.3f | " _STR "\n", clin_get_timestamp(), ## __VA_ARGS__);
 
 #define CLIN_LOG_NAME "clin.log"
 

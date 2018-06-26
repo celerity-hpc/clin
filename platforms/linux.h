@@ -14,8 +14,9 @@ void* clin_get_orig_fun(const char* name) {
 	void* funptr = dlsym(RTLD_NEXT, name);
 	if(funptr == NULL) {
 		CLIN_LOG("ERROR: Could not load function %s in original library", name);
+	} else {
+		CLIN_LOG("Init: loaded original function %s", name);
 	}
-	CLIN_LOG("Init: loaded original function %s", name);
 	return funptr;
 }
 

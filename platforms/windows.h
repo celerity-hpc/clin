@@ -14,8 +14,9 @@ void clin_platform_init() {
 	clin_g_clmodule = LoadLibrary(cldll);
 	if(clin_g_clmodule == NULL) {
 		CLIN_LOG("ERROR: Could not load original OpenCL dll from %s", cldll);
+	} else {
+		CLIN_LOG("Init: loaded original dll %s", cldll);
 	}
-	CLIN_LOG("Init: loaded original dll %s", cldll);
 }
 void clin_platform_end() {
 }

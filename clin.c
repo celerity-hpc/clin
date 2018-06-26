@@ -1,5 +1,5 @@
 
-#define extern
+#define CL_TARGET_OPENCL_VERSION 220
 
 #include "CL/cl_types_only.h"
 
