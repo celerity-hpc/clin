@@ -55,7 +55,7 @@ def generate_fun(funname)
         orig_name = "clin_o_#{funname}"
         $types_src += "typedef #{ret_type} (*#{type_name})(#{param_type_string});\n"
         $global_src += "#{type_name} #{orig_name} = NULL;\n"
-        $init_src += "\t#{orig_name} = clin_get_orig_fun(\"#{funname}\");\n"
+        $init_src += "\t#{orig_name} = (#{type_name})clin_get_orig_fun(\"#{funname}\");\n"
         $fun_src += <<-EOS
         #ifndef CLIN_CUSTOM_#{funname}
         CLIN_ENTRY #{ret_type} #{calling_convention} #{funname}(#{parameter_string}) {
