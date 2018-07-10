@@ -1,8 +1,12 @@
+#ifdef _CLIN_INCLUDED
+#error clin.inc must not be included more than once
+#else
+#define _CLIN_INCLUDED 1
+#endif
 
 #define CL_TARGET_OPENCL_VERSION 220
 
 #include "CL/cl_types_only.h"
-
 /// Initialize / destroy entire library (called on library load/unload by platform-specific mechanism)
 void clin_init();
 void clin_end();
