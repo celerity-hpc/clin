@@ -11,9 +11,14 @@ void clin_platform_end() {
 }
 
 void* clin_get_orig_fun(const char* name) {
-	void* funptr = dlsym(RTLD_NEXT, name);
+	void* handle = dlopen("libOpenCL.so", RTLD_NOW);
+	if (handle == NULL) {
+		CLIN_LOG("ERROR: Failed to load original libOpenCL.so (message: %s)", dlerror());
+		return NULL;
+	}
+	void* funptr = dlsym(handle, name);
 	if(funptr == NULL) {
-		CLIN_LOG("ERROR: Could not load function %s in original library", name);
+		CLIN_LOG("ERROR: Could not load function %s in original library (message: %s)", name, dlerror());
 	} else {
 		CLIN_LOG("Init: loaded original function %s", name);
 	}
