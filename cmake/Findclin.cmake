@@ -22,9 +22,10 @@ function(add_clin_to_library targetName)
 		set_target_properties(${targetName} PROPERTIES OUTPUT_NAME OpenCL)
 	endif()
 
-	if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
-		target_compile_definitions(${targetName} PRIVATE -D_GNU_SOURCE)
-		target_link_libraries(${targetName} dl)
+	set(COMPILER_ID "${CMAKE_C_COMPILER_ID} ${CMAKE_CXX_COMPILER_ID}")
+	if((COMPILER_ID MATCHES "GNU|Clang|AppleClang") OR ((COMPILER_ID STREQUAL " ") AND NOT MSVC))
+		target_compile_definitions(${targetName} PUBLIC -D_GNU_SOURCE)
+		target_link_libraries(${targetName} PUBLIC dl)
 	endif()
 
 endfunction(add_clin_to_library)
